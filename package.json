@@ -1,0 +1,20 @@
+{
+  "name": "groupomania",
+  "version": "1.0.0",
+  "description": "projet groupamania openclassrooms",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.1.0",
+    "body-parser": "^1.20.1",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "mongoose": "^6.6.5",
+    "nodemon": "^2.0.20",
+    "validator": "^13.7.0"
+  }
+}
