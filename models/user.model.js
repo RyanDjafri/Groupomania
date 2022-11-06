@@ -43,8 +43,9 @@ const userSchema = new mongoose.Schema(
     likes: {
       type: [String],
     },
-    role: {
-      type: String,
+    roles: {
+      type: [String],
+      enum: ["admin", "user"],
     },
   },
 
