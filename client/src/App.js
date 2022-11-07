@@ -19,8 +19,8 @@ function App() {
         .catch((err) => console.log("No token"));
     };
     fetchToken();
-    if(uid) dispatch(getUser(uid))
-  }, [uid]);
+    if (uid) dispatch(getUser(uid));
+  }, [uid, dispatch]);
   return (
     <UidContext.Provider value={uid}>
       <Routes />
