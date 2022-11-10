@@ -102,7 +102,7 @@ module.exports.likePost = async (req, res) => {
       .then((data) => res.send(data))
       .catch((err) => res.status(500).send({ message: err }));
 
-    await UserModel.findByIdAndUpdate(
+    /*  await UserModel.findByIdAndUpdate(
       req.body.id,
       {
         $addToSet: { likes: req.params.id },
@@ -111,6 +111,7 @@ module.exports.likePost = async (req, res) => {
     )
       .then((data) => res.send(data))
       .catch((err) => res.status(500).send({ message: err }));
+      */
   } catch (err) {
     return res.status(400).send(err);
   }
@@ -131,7 +132,7 @@ module.exports.unlikePost = async (req, res) => {
       .then((data) => res.send(data))
       .catch((err) => res.status(500).send({ message: err }));
 
-    await UserModel.findByIdAndUpdate(
+    /* await UserModel.findByIdAndUpdate(
       req.body.id,
       {
         $pull: { likes: req.params.id },
@@ -140,6 +141,7 @@ module.exports.unlikePost = async (req, res) => {
     )
       .then((data) => res.send(data))
       .catch((err) => res.status(500).send({ message: err }));
+      */
   } catch (err) {
     return res.status(400).send(err);
   }

@@ -67,9 +67,12 @@ module.exports.follow = async (req, res) => {
       },
       (err, docs) => {
         // if (!err) res.status(201).json(docs);
-        if (err) return res.status(400).json(err);
+        if (err) {
+          return res.status(400).json(err);
+        }
       }
     );
+
     await UserModel.findByIdAndUpdate(req.body.idToFollow, {
       $addToSet: { followers: req.params.id },
     });
