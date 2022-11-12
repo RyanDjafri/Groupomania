@@ -41,25 +41,25 @@ const NewPostForm = () => {
     setFile("");
   };
 
-  const handleVideo = () => {
-    let findLink = message.split(" ");
-    for (let i = 0; i < findLink.length; i++) {
-      if (
-        findLink[i].includes("https://www.yout") ||
-        findLink[i].includes("https://yout")
-      ) {
-        let embed = findLink[i].replace("watch?v=", "embed/");
-        setVideo(embed.split("&")[0]);
-        findLink.splice(i, 1);
-        setMessage(findLink.join(" "));
-        setPostPicture("");
-      }
-    }
-  };
   useEffect(() => {
     if (!isEmpty(userData)) setIsLoading(false);
+    const handleVideo = () => {
+      let findLink = message.split(" ");
+      for (let i = 0; i < findLink.length; i++) {
+        if (
+          findLink[i].includes("https://www.yout") ||
+          findLink[i].includes("https://yout")
+        ) {
+          let embed = findLink[i].replace("watch?v=", "embed/");
+          setVideo(embed.split("&")[0]);
+          findLink.splice(i, 1);
+          setMessage(findLink.join(" "));
+          setPostPicture("");
+        }
+      }
+    };
     handleVideo();
-  }, [userData, message, video]);
+  }, [userData, message, video, handleVideo]);
 
   return (
     <div className="post-container">
@@ -140,6 +140,8 @@ const NewPostForm = () => {
                 <button onClick={(e) => setVideo("")}>Supprimer video</button>
               )}
             </div>
+            {!isEmpty(errors.format) && <p>{errors.format}</p>}
+            {!isEmpty(errors.maxSize) && <p>{errors.maxSize}</p>}
             <div className="btn-send">
               {message || postPicture || video.length > 20 ? (
                 <button className="cancel" onClick={cancelPost}>
