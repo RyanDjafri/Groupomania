@@ -34,7 +34,6 @@ export default function userReducer(state = initialState, action) {
           (id) => id !== action.payload.idToUnfollow
         ),
       };
-
     default:
       return state;
   }
