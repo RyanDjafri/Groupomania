@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
+import { addPost, getPosts } from "../../actions/post.actions";
 import { isEmpty, timestampParser } from "../Utils";
 
 const NewPostForm = () => {
@@ -10,14 +11,36 @@ const NewPostForm = () => {
   const [video, setVideo] = useState("");
   const [file, setFile] = useState();
   const userData = useSelector((state) => state.userReducer);
-  const handlePicture = () => {};
-  const handlePost = () => {};
+  const dispatch = useDispatch();
+
+  const handlePost = async () => {
+    if (message || postPicture || video) {
+      const data = new FormData();
+      data.append("posterId", userData._id);
+      data.append("message", message);
+      if (file) data.append("file", file);
+      data.append("video", video);
+      await dispatch(addPost(data));
+      dispatch(getPosts());
+      cancelPost();
+    } else {
+      alert("Veuillez entrer un message");
+    }
+  };
+
+  const handlePicture = (e) => {
+    setPostPicture(URL.createObjectURL(e.target.files[0]));
+    setFile(e.target.files[0]);
+    setVideo("");
+  };
+
   const cancelPost = () => {
     setMessage("");
     setPostPicture("");
     setVideo("");
     setFile("");
   };
+
   const handleVideo = () => {
     let findLink = message.split(" ");
     for (let i = 0; i < findLink.length; i++) {
