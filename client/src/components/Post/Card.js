@@ -92,11 +92,13 @@ const Card = ({ post }) => {
                 allowFullScreen
                 title={post._id}></iframe>
             )}
+
             {userData._id === post.posterId && (
               <div className="button-container">
                 <div onClick={() => setIsUpdated(!isUpdated)}>
                   <img src="./img/icons/edit.svg" alt="edit" />
                 </div>
+
                 <DeleteCard id={post._id} />
               </div>
             )}
