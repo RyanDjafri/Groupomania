@@ -58,21 +58,20 @@ module.exports.follow = async (req, res) => {
 
   try {
     // add to the follower list
-    await UserModel.findByIdAndUpdate(
+    const u1 = await UserModel.findByIdAndUpdate(
       req.params.id,
       { $addToSet: { following: req.body.idToFollow } },
       { new: true, upsert: true }
-        .then((data) => res.send(data))
-        .catch((err) => res.status(500).send({ message: err }))
-    ),
-      // add to following list
-      await UserModel.findByIdAndUpdate(
-        req.body.idToFollow,
-        { $addToSet: { followers: req.params.id } },
-        { new: true, upsert: true }
-          .then((data) => res.send(data))
-          .catch((err) => res.status(500).send({ message: err }))
-      );
+    ).exec();
+    // add to following list
+    const u2 = await UserModel.findByIdAndUpdate(
+      req.body.idToFollow,
+      { $addToSet: { followers: req.params.id } },
+      { new: true, upsert: true }
+    ).exec();
+    return res.status(201).json({
+      msg: "Follow successful.",
+    });
   } catch (err) {
     return res.status(500).json({ message: err });
   }
@@ -86,21 +85,20 @@ module.exports.unfollow = async (req, res) => {
     return res.status(400).send("ID unknown : " + req.params.id);
 
   try {
-    await userModel.findByIdAndUpdate(
+    const u3 = await UserModel.findByIdAndUpdate(
       req.params.id,
       { $pull: { following: req.body.idToUnfollow } },
       { new: true, upsert: true }
-        .then((data) => res.send(data))
-        .catch((err) => res.status(500).send({ message: err }))
-    ),
-      // Retirer de la liste des followers
-      await userModel.findByIdAndUpdate(
-        req.body.idToUnfollow,
-        { $pull: { followers: req.params.id } },
-        { new: true, upsert: true }
-          .then((data) => res.send(data))
-          .catch((err) => res.status(500).send({ message: err }))
-      );
+    ).exec();
+    // Retirer de la liste des followers
+    const u4 = await UserModel.findByIdAndUpdate(
+      req.body.idToUnfollow,
+      { $pull: { followers: req.params.id } },
+      { new: true, upsert: true }
+    ).exec();
+    return res.status(201).json({
+      msg: "UNfollow successful.",
+    });
   } catch (err) {
     return res.status(500).json({ message: err });
   }

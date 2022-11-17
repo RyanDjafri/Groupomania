@@ -93,7 +93,8 @@ const Card = ({ post }) => {
                 title={post._id}></iframe>
             )}
 
-            {userData._id === post.posterId && (
+            {(userData._id === post.posterId ||
+              (userData.role && userData.role.includes("admin"))) && (
               <div className="button-container">
                 <div onClick={() => setIsUpdated(!isUpdated)}>
                   <img src="./img/icons/edit.svg" alt="edit" />
