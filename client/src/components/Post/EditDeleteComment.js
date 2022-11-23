@@ -50,7 +50,7 @@ const EditDeleteComment = ({ comment, postId }) => {
           <input
             type="text"
             name="text"
-            onClick={(e) => setText(e.target.value)}
+            onChange={(e) => setText(e.target.value)}
             defaultValue={comment.text}
           />
           <br />
