@@ -33,7 +33,7 @@ export const uploadPicture = (data, id) => {
             .then((res) => {
               dispatch({ type: UPLOAD_PICTURE, payload: res.data.picture });
             });
-        }
+          }
       })
       .catch((err) => console.log(err));
   };

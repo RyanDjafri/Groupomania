@@ -13,10 +13,12 @@ const UploadImg = () => {
     data.append("name", userData.pseudo);
     data.append("userId", userData._id);
     data.append("file", file);
+
     dispatch(uploadPicture(data, userData._id));
   };
+
   return (
-    <form onSubmit={handlePicture} className="upload-pic">
+    <form action="" onSubmit={handlePicture} className="upload-pic">
       <label htmlFor="file">Changer d'image</label>
       <input
         type="file"
