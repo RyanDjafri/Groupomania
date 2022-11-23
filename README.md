@@ -1,17 +1,26 @@
+# LANCEMENT PROJET
+
 Faire un npm install dans le dossier client et le back
 
-Démarrer le server : npm start
+# Démarrer le server : `
 
-Démarrer le front : cd client + npm start
+`npm start`
 
-Back config :
+# Démarrer le front :
+
+`cd client && npm start`
+
+# Back config :
 
 Mettez vos informations de cluster dans /config/db.js
 Créez le fichier .env dans /config/ dans les données suivantes
 PORT= votre port localhost
 CLIENT_URL= votre URL client
-DB_USER_PASS= votre identifiant et mot de passe
+DB_USERNAME=username de db
+DB_PASSWORD =mot de passe de db
 TOKEN_SECRET=votre clé secrète aléatoire
+
+#
 
 Front config :
 Créez un fichier .env dans l'URL du serveur :
